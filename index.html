@@ -40,7 +40,6 @@
                     .to({y: 50}, 1000)
                     .to({alpha: 0}, 100, createjs.Ease.getPowInOut(2)).call(function() {
                         currentNodes.splice(currentNodes.indexOf(notes[i]), 1);
-                        console.log(score);
                     });
         }
     }
@@ -92,6 +91,11 @@
     function fadeoutKey(key) {
         createjs.Tween.get(key, {loop: false})
                 .to({alpha: .7}, 50, createjs.Ease.getPowInOut(2))
+        for(var i = 0; i < currentNodes.length; i++){
+            if(currentNodes[i].x == key.x){
+                console.log("Score: ", currentNodes[i].x, currentNodes[i].y);
+            }
+        }
     }
 
     function keyDown(event) {
