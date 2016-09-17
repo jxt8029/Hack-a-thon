@@ -13,13 +13,56 @@
         "#0cf", "#51b8e1", "#4d4dff", "#7300e6"];
     var keyArray = [];
     var stage = new createjs.Stage("demoCanvas");
-    function fadeoutKey(key){
+    function fadeInKey(key){
         createjs.Tween.get(key, {loop: false})
-                .to({alpha: .9}, 100,  createjs.Ease.getPowInOut(2))
-                .to({alpha: 1}, 100,  createjs.Ease.getPowInOut(2))
+                .to({alpha: .9}, 50,  createjs.Ease.getPowInOut(2))
     }
 
-    function keyPress(event) {
+    function keyUp(event) {
+        switch (event.keyCode) {
+                //65 = a
+            case 65:
+                fadeInKey(keyArray[0]);
+                break;
+                //83 = s
+            case 83:
+                fadeInKey(keyArray[1]);
+                break;
+                //68 = d
+            case 68:
+                fadeInKey(keyArray[2]);
+                break;
+                //70 = f
+            case 70:
+                fadeInKey(keyArray[3]);
+                break;
+                //74 = j
+            case 74:
+                fadeInKey(keyArray[4]);
+                break;
+                //75 = k
+            case 75:
+                fadeInKey(keyArray[5]);
+                break;
+                //76 = l
+            case 76:
+                fadeInKey(keyArray[6]);
+                break;
+                //186 = ;
+            case 186:
+                fadeInKey(keyArray[7]);
+                break;
+        }
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener("tick", stage);
+    }
+
+    function fadeoutKey(key){
+        createjs.Tween.get(key, {loop: false})
+                .to({alpha: .7}, 50,  createjs.Ease.getPowInOut(2))
+    }
+
+    function keyDown(event) {
         switch (event.keyCode) {
                 //65 = a
             case 65:
@@ -64,6 +107,7 @@
             key.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
             key.x = i * 90;
             key.y = 0;
+            key.alpha = .9
             stage.addChild(key);
             keyArray.push(key);
         }
@@ -94,7 +138,8 @@
         makeKeyButtons();
         playSound();
         stage.update();
-        this.document.onkeydown = keyPress;
+        this.document.onkeydown = keyDown;
+        this.document.onkeyup = keyUp;
     }
 
 </script>
