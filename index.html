@@ -156,10 +156,8 @@
     }
 
     function init() {
-        playSound();
         makeKeyLines();
         keyArray = makeKeyButtons();
-        playSound();
         stage.update();
         this.document.onkeydown = keyDown;
         this.document.onkeyup = keyUp;
