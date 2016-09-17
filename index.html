@@ -5,25 +5,63 @@
     <title>Title</title>
 </head>
 <body onload="init();">
-    <canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
-    <script src="createjs.js"></script>
-    <script>
-        function makeKeyButtons(stage) {
-            var colorArray = ["#e60000","#ffa500","#ffff00","#00e600",
-                "#0cf","#51b8e1","#4d4dff","#7300e6"];
-            for(i = 0; i < 8; i++){
-                var key = new createjs.Shape();
-                key.graphics.beginFill(colorArray[i]).drawRect(10,500, 80, 80);
-                key.x = i * 90;
-                key.y = 0;
-                stage.addChild(key);
-            }
-            stage.update()
+<canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
+<script src="createjs.js"></script>
+<script>
+    function keyPress(event) {
+        switch (event.keyCode) {
+                //65 = a
+            case 65:
+                alert("a");
+                break;
+                //83 = s
+            case 83:
+                alert("s");
+                break;
+                //68 = d
+            case 68:
+                alert("d");
+                break;
+                //70 = f
+            case 70:
+                alert("f");
+                break;
+                //74 = j
+            case 74:
+                alert("j");
+                break;
+                //75 = k
+            case 75:
+                alert("k");
+                break;
+                //76 = l
+            case 76:
+                alert("l");
+                break;
+                //186 = ;
+            case 186:
+                alert(";");
+                break;
         }
-        function init() {
-            var stage = new createjs.Stage("demoCanvas");
-            makeKeyButtons(stage);
+    }
+
+    function makeKeyButtons(stage) {
+        var colorArray = ["#e60000", "#ffa500", "#ffff00", "#00e600",
+            "#0cf", "#51b8e1", "#4d4dff", "#7300e6"];
+        for (i = 0; i < 8; i++) {
+            var key = new createjs.Shape();
+            key.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
+            key.x = i * 90;
+            key.y = 0;
+            stage.addChild(key);
         }
-    </script>
+        stage.update()
+    }
+    function init() {
+        var stage = new createjs.Stage("demoCanvas");
+        makeKeyButtons(stage);
+        this.document.onkeydown = keyPress
+    }
+</script>
 </body>
 </html>
