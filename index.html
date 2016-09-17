@@ -25,13 +25,15 @@
     }
     function moveNote(note) {
         createjs.Tween.get(note, {loop: false})
-                .to({y: .9}, 1000)
-                .to({alpha: 0}, 50,  createjs.Ease.getPowInOut(2))
+                .to({y: 50}, 1000)
+                .to({alpha: 0}, 100,  createjs.Ease.getPowInOut(2))
     }
 
     function sendNote(){
-        var note = showNote();
-        moveNote(note);
+        for(var i = 0; i < 4; i++){
+            var note = showNote();
+            moveNote(note);
+        }
     }
 
     function keyUp(event) {
@@ -138,7 +140,7 @@
         stage.update();
         this.document.onkeydown = keyDown;
         this.document.onkeyup = keyUp;
-        window.setInterval(sendNote, 50);
+        window.setInterval(sendNote, 500);
     }
 
 </script>
