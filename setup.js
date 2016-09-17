@@ -2,7 +2,7 @@
  * Created by Ricky on 9/17/2016.
  */
 
-function  makeNote(x, y) {
+function  makeNote(x, y, i) {
     var note = new createjs.Shape();
     note.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
     note.x = x;
@@ -14,7 +14,7 @@ function  makeNote(x, y) {
 function makeKeyButtons() {
     var keyArray = [];
     for (i = 0; i < 8; i++) {
-        var note = makeNote(i*90, 0);
+        var note = makeNote(i*90, 0, i);
         stage.addChild(note);
         keyArray.push(note);
     }
