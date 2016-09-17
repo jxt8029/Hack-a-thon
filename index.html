@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<body onload="init();">
+    <canvas id="demoCanvas" width="500" height="300"></canvas>
+    <script src="createjs.js"></script>
     <script>
         function init() {
-            // code here.
+            var stage = new createjs.Stage("demoCanvas");
+            var circle = new createjs.Shape();
+            circle.graphics.beginFill("DeepSkyBlue").drawCircle(0,0,50);
+            circle.x = 100;
+            circle.y = 100;
+            stage.addChild(circle);
+            stage.update()
         }
     </script>
 </body>
