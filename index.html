@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>JS Hero 2</title>
 </head>
 <body onload="init();">
-<canvas id="demoCanvas" style="margin: auto; display: block; border: 1px solid black; padding: 1rem;" width="730" height="600"></canvas>
+    <header>
+        <h1>JS Hero 2</h1>
+        <h2>So awesome we skipped the first</h2>
+    </header>
+    <canvas id="demoCanvas" width="730px" height="600px"></canvas>
+    <footer>
+        <h2>Score:</h2>
+        <p id="score">0</p>
+    </footer>
 <script src="createjs.js"></script>
 <script src="setup.js"></script>
 <script src="songs.js"></script>
@@ -94,14 +103,17 @@
         for(var i = 0; i < currentNodes.length; i++){
             if(currentNodes[i].x == key.x && currentNodes[i].y == key.y){
                 console.log("Exact");
+                score += 2;
             }
             else if(currentNodes[i].x == key.x && currentNodes[i].y <= (key.y + 40) && currentNodes[i].y >= (key.y - 40)) {
                 console.log("Close");
+                score += 1;
             }
             else if(currentNodes[i].x == key.x){
                 //console.log("Same Col");
             }
         }
+        document.getElementById("score").innerHTML = score;
     }
 
     function keyDown(event) {

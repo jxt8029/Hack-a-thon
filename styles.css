@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+header, footer {
+    float: left;
+    width: calc(50% - 383px);
+    padding: 1rem;
+}
+
+header h1 {
+    font-size: 3rem;
+}
+
+header h2 {
+    font-size: 1rem;
+}
+
+canvas{
+    border: 1px solid black;
+    float: left;
+    padding: 1rem;
+}
+
+#score {
+    font-size: 6rem;
+    margin: .5rem 0;
+    text-align: center;
+}
