@@ -5,9 +5,19 @@
     <title>Title</title>
 </head>
 <body onload="init();">
-    <canvas id="demoCanvas" width="500" height="300"></canvas>
+    <canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
     <script src="createjs.js"></script>
     <script>
+        function makeKeyButtons(stage) {
+            for(i = 0; i < 8; i++){
+                var key = new createjs.Shape();
+                key.graphics.beginFill("DeepSkyBlue").drawRect(10,500, 80, 80);
+                key.x = i * 90;
+                key.y = 0;
+                stage.addChild(key);
+            }
+            stage.update()
+        }
         function init() {
             var stage = new createjs.Stage("demoCanvas");
             var circle = new createjs.Shape();
@@ -15,7 +25,8 @@
             circle.x = 100;
             circle.y = 100;
             stage.addChild(circle);
-            stage.update()
+            stage.update();
+            makeKeyButtons(stage);
         }
     </script>
 </body>
