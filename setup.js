@@ -2,18 +2,23 @@
  * Created by Ricky on 9/17/2016.
  */
 
+function  makeNote(x, y) {
+    var note = new createjs.Shape();
+    note.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
+    note.x = x;
+    note.y = y;
+    note.alpha = .9;
+    return note;
+}
+
 function makeKeyButtons() {
     var keyArray = [];
     for (i = 0; i < 8; i++) {
-        var key = new createjs.Shape();
-        key.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
-        key.x = i * 90;
-        key.y = 0;
-        key.alpha = .9
-        stage.addChild(key);
-        keyArray.push(key);
+        var note = makeNote(i*90, 0);
+        stage.addChild(note);
+        keyArray.push(note);
     }
-    return keyArray
+    return keyArray;
 }
 
 function makeKeyLines() {
