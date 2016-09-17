@@ -27,6 +27,7 @@
                 var note = makeNote(i,-400,i);
                 stage.addChild(note);
                 notes.push(note);
+                currentNodes.push(note);
             }
         }
 
@@ -37,6 +38,9 @@
             createjs.Tween.get(notes[i], {loop: false})
                     .to({y: 50}, 1000)
                     .to({alpha: 0}, 100,  createjs.Ease.getPowInOut(2))
+                    .call(function() {
+                        currentNodes.splice(currentNodes.indexOf(notes[i]), 1);
+                    });
         }
     }
 
@@ -157,6 +161,7 @@
             else {
                 sendNote(index);
                 index++;
+                console.log(currentNodes);
             }
         }, 500);
     }
