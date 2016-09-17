@@ -17,6 +17,11 @@
         createjs.Tween.get(key, {loop: false})
                 .to({alpha: .9}, 50,  createjs.Ease.getPowInOut(2))
     }
+    function test() {
+        var note = makeNote(0,0);
+        stage.addChild(note);
+        stage.update();
+    }
 
     function keyUp(event) {
         switch (event.keyCode) {
