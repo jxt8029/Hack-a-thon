@@ -123,6 +123,21 @@
             case 186:
                 fadeoutKey(keyArray[7]);
                 break;
+            case 13:
+                playSound();
+
+                var index = 0;
+                var refreshIntervalId = window.setInterval(function(){
+                    if(index >= song1.length){
+                        clearInterval(refreshIntervalId);
+                        createjs.Sound.stop();
+                    }
+                    else {
+                        sendNote(index);
+                        index++;
+                    }
+                }, 200);
+                break;
         }
         createjs.Ticker.setFPS(60);
         createjs.Ticker.addEventListener("tick", stage);
@@ -141,24 +156,11 @@
     }
 
     function init() {
-        playSound();
         makeKeyLines();
         keyArray = makeKeyButtons();
-        playSound();
         stage.update();
         this.document.onkeydown = keyDown;
         this.document.onkeyup = keyUp;
-        var index = 0;
-        var refreshIntervalId = window.setInterval(function(){
-            if(index >= song1.length){
-                clearInterval(refreshIntervalId);
-                createjs.Sound.stop();
-            }
-            else {
-                sendNote(index);
-                index++;
-            }
-        }, 500);
     }
 
 </script>
