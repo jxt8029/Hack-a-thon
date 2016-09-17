@@ -15,6 +15,7 @@
         "#0cf", "#51b8e1", "#4d4dff", "#7300e6"];
     var stage = new createjs.Stage("demoCanvas");
     var currentNodes = [];
+    var score = 0;
 
     function fadeInKey(key) {
         createjs.Tween.get(key, {loop: false})
@@ -27,6 +28,7 @@
                 var note = makeNote(i, -400, i);
                 stage.addChild(note);
                 notes.push(note);
+                currentNodes.push(note);
             }
         }
 
@@ -36,7 +38,10 @@
         for (var i = 0; i < notes.length; i++) {
             createjs.Tween.get(notes[i], {loop: false})
                     .to({y: 50}, 1000)
-                    .to({alpha: 0}, 100, createjs.Ease.getPowInOut(2))
+                    .to({alpha: 0}, 100, createjs.Ease.getPowInOut(2)).call(function() {
+                        currentNodes.splice(currentNodes.indexOf(notes[i]), 1);
+                        console.log(score);
+                    });
         }
     }
 
@@ -142,7 +147,6 @@
         createjs.Ticker.setFPS(60);
         createjs.Ticker.addEventListener("tick", stage);
     }
-
 
     var soundID = "tmp";
     function playSound() {
