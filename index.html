@@ -8,7 +8,6 @@
 <canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
 <script src="createjs.js"></script>
 <script>
-    var soundID = "tmp";
     function keyPress(event) {
         switch (event.keyCode) {
                 //65 = a
@@ -59,14 +58,15 @@
         }
     }
 
-    function loadSound() {
-        createjs.Sound.registerSound("tomydeepestego_Neve.mp3", soundID);
-    }
+    var soundID = "tmp";
     function playSound() {
-        createjs.Sound.play(soundID);
+        createjs.Sound.alternateExtensions["mp3"];
+        createjs.Sound.registerSound("tomydeepestego_Neve.mp3", soundID);
+        createjs.Sound.addEventListener("fileload", handleFileLoad);
+        function handleFileLoad(event){
+            createjs.Sound.play(soundID);
+        }
     }
-
-
     function makeKeyLines(stage) {
         for (i = 0; i < 8; i++) {
             var key = new createjs.Shape();
@@ -78,14 +78,15 @@
     }
 
     function init() {
-        loadSound();
         playSound();
         var stage = new createjs.Stage("demoCanvas");
         makeKeyLines(stage);
         makeKeyButtons(stage);
+        playSound();
         stage.update();
-        this.document.onkeydown = keyPress
+        this.document.onkeydown = keyPress;
     }
+
 </script>
 </body>
 </html>
