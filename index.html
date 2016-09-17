@@ -45,20 +45,34 @@
         }
     }
 
+    var colorArray = ["#e60000","#ffa500","#ffff00","#00e600",
+        "#0cf","#51b8e1","#4d4dff","#7300e6"];
+
     function makeKeyButtons(stage) {
-        var colorArray = ["#e60000", "#ffa500", "#ffff00", "#00e600",
-            "#0cf", "#51b8e1", "#4d4dff", "#7300e6"];
-        for (i = 0; i < 8; i++) {
+        for(i = 0; i < 8; i++){
             var key = new createjs.Shape();
-            key.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
+            key.graphics.beginFill(colorArray[i]).drawRect(10,500, 80, 80);
             key.x = i * 90;
             key.y = 0;
             stage.addChild(key);
         }
         stage.update()
     }
+
+    function makeKeyLines(stage){
+        for(i = 0; i < 8; i++){
+            var key = new createjs.Shape();
+            key.graphics.beginFill("Black").drawRect(47.5, 10, 5, 600);
+            key.x = i * 90;
+            key.y = 0;
+            stage.addChild(key);
+        }
+        stage.update()
+    }
+
     function init() {
         var stage = new createjs.Stage("demoCanvas");
+        makeKeyLines(stage);
         makeKeyButtons(stage);
         this.document.onkeydown = keyPress
     }
