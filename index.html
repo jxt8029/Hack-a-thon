@@ -17,15 +17,22 @@
         createjs.Tween.get(key, {loop: false})
                 .to({alpha: .9}, 50,  createjs.Ease.getPowInOut(2))
     }
-    function test() {
-        var note = makeNote(0,-400,0);
+    function showNote() {
+        var random = Math.floor(Math.random() * (8));
+        var note = makeNote(random,-400,random);
         stage.addChild(note);
+        return note;
     }
-    function testMove() {
-        createjs.Tween.get(key, {loop: false})
-                .to({y: .9}), 200, createjs.Ease.getPowInOut(2))
+    function moveNote(note) {
+        createjs.Tween.get(note, {loop: false})
+                .to({y: .9}, 1000)
+                .to({alpha: 0}, 50,  createjs.Ease.getPowInOut(2))
     }
 
+    function sendNote(){
+        var note = showNote();
+        moveNote(note);
+    }
 
     function keyUp(event) {
         switch (event.keyCode) {
@@ -128,10 +135,10 @@
         makeKeyLines();
         keyArray = makeKeyButtons();
         playSound();
-        test()
         stage.update();
         this.document.onkeydown = keyDown;
         this.document.onkeyup = keyUp;
+        window.setInterval(sendNote, 50);
     }
 
 </script>
