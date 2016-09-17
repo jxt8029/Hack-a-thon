@@ -92,8 +92,14 @@
         createjs.Tween.get(key, {loop: false})
                 .to({alpha: .7}, 50, createjs.Ease.getPowInOut(2))
         for(var i = 0; i < currentNodes.length; i++){
-            if(currentNodes[i].x == key.x){
-                console.log("Score: ", currentNodes[i].x, currentNodes[i].y);
+            if(currentNodes[i].x == key.x && currentNodes[i].y == key.y){
+                console.log("Exact");
+            }
+            else if(currentNodes[i].x == key.x && currentNodes[i].y <= (key.y + 40) && currentNodes[i].y >= (key.y - 40)) {
+                console.log("Close");
+            }
+            else if(currentNodes[i].x == key.x){
+                //console.log("Same Col");
             }
         }
     }
