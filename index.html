@@ -16,15 +16,15 @@
     var stage = new createjs.Stage("demoCanvas");
     var currentNodes = [];
 
-    function fadeInKey(key){
+    function fadeInKey(key) {
         createjs.Tween.get(key, {loop: false})
-                .to({alpha: .9}, 50,  createjs.Ease.getPowInOut(2))
+                .to({alpha: .9}, 50, createjs.Ease.getPowInOut(2))
     }
     function showNote(line) {
         var notes = [];
-        for(var i = 0; i < line.length; i++){
-            if(line[i] == 1){
-                var note = makeNote(i,-400,i);
+        for (var i = 0; i < line.length; i++) {
+            if (line[i] == 1) {
+                var note = makeNote(i, -400, i);
                 stage.addChild(note);
                 notes.push(note);
             }
@@ -33,14 +33,14 @@
         return notes;
     }
     function moveNote(notes) {
-        for(var i = 0; i< notes.length; i++){
+        for (var i = 0; i < notes.length; i++) {
             createjs.Tween.get(notes[i], {loop: false})
                     .to({y: 50}, 1000)
-                    .to({alpha: 0}, 100,  createjs.Ease.getPowInOut(2))
+                    .to({alpha: 0}, 100, createjs.Ease.getPowInOut(2))
         }
     }
 
-    function sendNote(i){
+    function sendNote(i) {
         var notes = showNote(song1[i]);
         moveNote(notes);
     }
@@ -84,9 +84,9 @@
         createjs.Ticker.addEventListener("tick", stage);
     }
 
-    function fadeoutKey(key){
+    function fadeoutKey(key) {
         createjs.Tween.get(key, {loop: false})
-                .to({alpha: .7}, 50,  createjs.Ease.getPowInOut(2))
+                .to({alpha: .7}, 50, createjs.Ease.getPowInOut(2))
     }
 
     function keyDown(event) {
@@ -127,8 +127,8 @@
                 playSound();
 
                 var index = 0;
-                var refreshIntervalId = window.setInterval(function(){
-                    if(index >= song1.length){
+                var refreshIntervalId = window.setInterval(function () {
+                    if (index >= song1.length) {
                         clearInterval(refreshIntervalId);
                         createjs.Sound.stop();
                     }
@@ -144,13 +144,12 @@
     }
 
 
-
     var soundID = "tmp";
     function playSound() {
         createjs.Sound.alternateExtensions["mp3"];
         createjs.Sound.registerSound("Scott_Holmes_Paint_By_Numbers.mp3", soundID);
         createjs.Sound.addEventListener("fileload", handleFileLoad);
-        function handleFileLoad(event){
+        function handleFileLoad(event) {
             createjs.Sound.play(soundID);
         }
     }
