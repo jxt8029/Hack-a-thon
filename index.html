@@ -7,11 +7,11 @@
 <body onload="init();">
 <canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
 <script src="createjs.js"></script>
+<script src="setup.js"></script>
 <script>
 
     var colorArray = ["#e60000", "#ffa500", "#ffff00", "#00e600",
         "#0cf", "#51b8e1", "#4d4dff", "#7300e6"];
-    var keyArray = [];
     var stage = new createjs.Stage("demoCanvas");
     function fadeInKey(key){
         createjs.Tween.get(key, {loop: false})
@@ -101,17 +101,7 @@
         createjs.Ticker.addEventListener("tick", stage);
     }
 
-    function makeKeyButtons() {
-        for (i = 0; i < 8; i++) {
-            var key = new createjs.Shape();
-            key.graphics.beginFill(colorArray[i]).drawRect(10, 500, 80, 80);
-            key.x = i * 90;
-            key.y = 0;
-            key.alpha = .9
-            stage.addChild(key);
-            keyArray.push(key);
-        }
-    }
+
 
     var soundID = "tmp";
     function playSound() {
@@ -122,20 +112,12 @@
             createjs.Sound.play(soundID);
         }
     }
-    function makeKeyLines() {
-        for (i = 0; i < 8; i++) {
-            var key = new createjs.Shape();
-            key.graphics.beginFill("Black").drawRect(47.5, 10, 5, 600);
-            key.x = i * 90;
-            key.y = 0;
-            stage.addChild(key);
-        }
-    }
+
 
     function init() {
         playSound();
         makeKeyLines();
-        makeKeyButtons();
+        keyArray = makeKeyButtons();
         playSound();
         stage.update();
         this.document.onkeydown = keyDown;
