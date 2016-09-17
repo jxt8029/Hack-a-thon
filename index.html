@@ -129,8 +129,6 @@
                 fadeoutKey(keyArray[7]);
                 break;
             case 13:
-                playSound();
-
                 var index = 0;
                 var refreshIntervalId = window.setInterval(function () {
                     if (index >= song1.length) {
@@ -142,6 +140,8 @@
                         index++;
                     }
                 }, 200);
+
+                playSound();
                 break;
         }
         createjs.Ticker.setFPS(60);
