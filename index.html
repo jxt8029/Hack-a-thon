@@ -9,9 +9,11 @@
     <script src="createjs.js"></script>
     <script>
         function makeKeyButtons(stage) {
+            var colorArray = ["DeepSkyBlue","DeepSkyBlue","DeepSkyBlue","DeepSkyBlue",
+                "DeepSkyBlue","DeepSkyBlue","DeepSkyBlue","DeepSkyBlue"];
             for(i = 0; i < 8; i++){
                 var key = new createjs.Shape();
-                key.graphics.beginFill("DeepSkyBlue").drawRect(10,500, 80, 80);
+                key.graphics.beginFill(colorArray[i]).drawRect(10,500, 80, 80);
                 key.x = i * 90;
                 key.y = 0;
                 stage.addChild(key);
