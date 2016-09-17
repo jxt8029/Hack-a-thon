@@ -8,6 +8,7 @@
 <canvas id="demoCanvas" style="margin: auto; display: block;" width="730" height="600"></canvas>
 <script src="createjs.js"></script>
 <script src="setup.js"></script>
+<script src="songs.js"></script>
 <script>
 
     var colorArray = ["#e60000", "#ffa500", "#ffff00", "#00e600",
@@ -17,23 +18,29 @@
         createjs.Tween.get(key, {loop: false})
                 .to({alpha: .9}, 50,  createjs.Ease.getPowInOut(2))
     }
-    function showNote() {
-        var random = Math.floor(Math.random() * (8));
-        var note = makeNote(random,-400,random);
-        stage.addChild(note);
-        return note;
+    function showNote(line) {
+        var notes = [];
+        for(var i = 0; i < line.length; i++){
+            if(line[i] == 1){
+                var note = makeNote(i,-400,i);
+                stage.addChild(note);
+                notes.push(note);
+            }
+        }
+
+        return notes;
     }
-    function moveNote(note) {
-        createjs.Tween.get(note, {loop: false})
-                .to({y: 50}, 1000)
-                .to({alpha: 0}, 100,  createjs.Ease.getPowInOut(2))
+    function moveNote(notes) {
+        for(var i = 0; i< notes.length; i++){
+            createjs.Tween.get(notes[i], {loop: false})
+                    .to({y: 50}, 1000)
+                    .to({alpha: 0}, 100,  createjs.Ease.getPowInOut(2))
+        }
     }
 
-    function sendNote(){
-        for(var i = 0; i < 4; i++){
-            var note = showNote();
-            moveNote(note);
-        }
+    function sendNote(i){
+        var notes = showNote(song1[i]);
+        moveNote(notes);
     }
 
     function keyUp(event) {
@@ -139,7 +146,14 @@
         stage.update();
         this.document.onkeydown = keyDown;
         this.document.onkeyup = keyUp;
-        window.setInterval(sendNote, 500);
+        var index = 0;
+        var refreshIntervalId = window.setInterval(function(){
+                                sendNote(index);
+                                index++;
+                                if(index > song1.length){
+                                    clearInterval(refreshIntervalId);
+                                }
+                            }, 500);
     }
 
 </script>
